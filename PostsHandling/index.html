@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<h2>Posts Table</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+        </tr>
+    </thead>
+    <tbody id="postsTable">
+    </tbody>
+</table>
+
+<br>
+<button onclick="location.href='DataEntry.html'">Add Post</button>
+
+<script>
+    const table = document.getElementById("postsTable");
+    let posts = JSON.parse(localStorage.getItem("posts")) || [
+        { id: 1, title: "daily JS news" },
+        { id: 2, title: "daily C++ news" },
+        { id: 3, title: "daily Python news" },
+        { id: 4, title: "daily Java news" },
+    ];
+
+    function updateTable() {
+        table.innerHTML = ""; 
+        posts.forEach((item) => {
+            let row = `<tr>
+                <td>${item.id}</td>
+                <td>${item.title}</td>
+            </tr>`;
+            table.innerHTML += row;
+        });
+    }
+
+    updateTable(); 
+</script>
+
+</body>
+</html>

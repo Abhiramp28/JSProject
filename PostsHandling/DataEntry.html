@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry</title>
+</head>
+<body>
+
+<h2>Data Entry</h2>
+
+<form id="dataForm">
+    <label for="postId">Post ID:</label><br>
+    <input type="number" id="postId" name="postId"><br>
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title"><br><br>
+    <button type="submit" id="submit">Submit</button>
+</form> 
+
+<script>
+    let posts = JSON.parse(localStorage.getItem("posts")) || [
+        { id: 1, title: "daily JS news" },
+        { id: 2, title: "daily C++ news" },
+        { id: 3, title: "daily Python news" },
+        { id: 4, title: "daily Java news" },
+    ];
+
+    document.getElementById("submit").addEventListener("click", function (event) {
+        event.preventDefault(); 
+        const postId = document.getElementById("postId").value;
+        const title = document.getElementById("title").value;
+
+        if (postId && title) {
+            posts.push({ id: Number(postId), title: title }); 
+            localStorage.setItem("posts", JSON.stringify(posts)); 
+            window.location.href="index.html"; 
+        }
+     }) ;
+</script>
+
+</body>
+</html>
